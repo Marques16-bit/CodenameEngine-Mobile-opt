@@ -3,15 +3,16 @@ on: workflow_dispatch
 jobs:
   build:
     name: Android Build
-    permissions: write-all
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Pulling the new commit
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@main
+
       - name: Setting up Haxe
         uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.2.5
+
       - name: Setup Android NDK
         id: setup-ndk
         uses: nttld/setup-ndk@main
