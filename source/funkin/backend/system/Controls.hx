@@ -383,30 +383,44 @@ class Controls extends FlxActionSet
 	public function checkMobile(buttonName:String, ?type:String):Bool
 	{
 		if (mobileC) {
-			var keyMap:Array<String> = [buttonName.toUpperCase()];
+			var upperName:String = buttonName.toUpperCase();
+			var keyMap:Array<String> = [upperName];
+			var swapList:Array<String> = [
+				"ACCEPT", "PAUSE", "RESET",
+				"CHANGE_MODE", "SWITCHMOD", "FPS_COUNTER",
+				"DEV_ACCESS", "DEV_CONSOLE", "DEV_RELOAD"
+			];
+			/* Basically Swaps the Which Variable Should Do What */
+			if (swapList.contains(upperName)) {
+				if (type == null || type == "")
+					type = "_P";
+				else if (type == "_P" || type == "_HOLD")
+					type = "";
+			}
+
+			/* Backwards Compatibility */
+			switch(upperName) {
+				case "ACCEPT": keyMap.push("A");
+				case "BACK": keyMap.push("B");
+				case "PAUSE": keyMap.push("P");
+			}
 
 			switch(type)
 			{
-				case "_P":
+				case "_P", "_HOLD":
 					var p:Bool = (mobilePadJustPressed(keyMap) || hitboxJustPressed(keyMap));
-					trace('${p ? "just pressed" : "not just pressed"} the button $keyMap');
 					return p;
 				case "_R":
 					var justR:Bool = (mobilePadJustReleased(keyMap) || hitboxJustReleased(keyMap));
-					trace('${justR ? "just released" : "not just released"} the button $keyMap');
 					return justR;
 				default:
 					var justP:Bool = (mobilePadPressed(keyMap) || hitboxPressed(keyMap));
-					trace('${justP ? "pressed" : "not pressed"} the button $keyMap');
 					return justP;
 			}
-			trace('nothing found: $type');
-		} else {
-			trace("mobileC is broken lol");
 		}
 		return false;
 	}
-	
+
 	@:nullSafety(Off)
 	public var isInSubstate:Bool = false; // don't worry about this it becomes true and false on it's own in MusicBeatSubstate
 

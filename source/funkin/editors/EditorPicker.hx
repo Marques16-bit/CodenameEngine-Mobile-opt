@@ -84,6 +84,9 @@ class EditorPicker extends MusicBeatSubstate {
 		sprites[0].selected = true;
 
 		FlxG.mouse.getScreenPosition(subCam, oldMousePos);
+
+		addMobilePad('UP_DOWN', 'A_B');
+		addMobilePadCamera();
 	}
 
 	public override function update(elapsed:Float) {
@@ -98,14 +101,14 @@ class EditorPicker extends MusicBeatSubstate {
 		}
 		changeSelection(-FlxG.mouse.wheel + (controls.UP_P ? -1 : 0) + (controls.DOWN_P ? 1 : 0));
 
-		FlxG.mouse.getScreenPosition(subCam, curMousePos);
-		if (curMousePos.x != oldMousePos.x || curMousePos.y != oldMousePos.y) {
+		if (!controls.mobileC) FlxG.mouse.getScreenPosition(subCam, curMousePos);
+		if (!controls.mobileC && curMousePos.x != oldMousePos.x || curMousePos.y != oldMousePos.y) {
 			oldMousePos.set(curMousePos.x, curMousePos.y);
 			curSelected = -1;
 			changeSelection(Std.int(curMousePos.y / optionHeight)+1);
 		}
 
-		if (controls.ACCEPT || FlxG.mouse.justReleased) {
+		if (controls.ACCEPT || (FlxG.mouse.justReleased && !controls.mobileC)) {
 			if(options[curSelected].onClick != null)
 				options[curSelected].onClick();
 			else if (options[curSelected].state != null) {

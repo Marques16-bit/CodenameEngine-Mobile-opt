@@ -76,17 +76,10 @@ class Main extends Sprite
 		#end
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
 
-		// Languages folder
-		if (!MobileUtil.areAssetsCopied("assets/languages/"))
-			MobileUtil.copyAssetsFromAPK("assets/languages/");
-
-		// Data folder
-		if (!MobileUtil.areAssetsCopied("assets/data/"))
-			MobileUtil.copyAssetsFromAPK("assets/data/");
-
-		// Songs folder
-		if (!MobileUtil.areAssetsCopied("assets/songs/")) 
-			MobileUtil.copyAssetsFromAPK("assets/songs/");
+		/* Core Folders */
+		MobileUtil.copyAssets("assets/languages/");
+		MobileUtil.copyAssets("assets/data/");
+		MobileUtil.copyAssets("assets/songs/");
 		#end
 
 		CrashHandler.init();

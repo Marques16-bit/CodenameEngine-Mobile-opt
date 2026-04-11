@@ -183,6 +183,8 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
+		addMobilePad('LEFT_FULL', 'A_B_X_Y');
+
 		changeSelection(0, true);
 		changeCoopMode(0, true);
 
@@ -239,7 +241,7 @@ class FreeplayState extends MusicBeatState
 		if (canSelect) {
 			changeSelection((controls.UP_P ? -1 : 0) + (controls.DOWN_P ? 1 : 0) - FlxG.mouse.wheel);
 			changeDiff((controls.LEFT_P ? -1 : 0) + (controls.RIGHT_P ? 1 : 0));
-			changeCoopMode((controls.CHANGE_MODE ? 1 : 0)); // TODO: make this configurable
+			changeCoopMode(((controls.CHANGE_MODE || mobilePadJustPressed("X")) ? 1 : 0)); // TODO: make this configurable
 			// putting it before so that its actually smooth
 			updateOptionsAlpha();
 		}
@@ -302,7 +304,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		#if sys
-		if (FlxG.keys.justPressed.EIGHT && Sys.args().contains("-livereload"))
+		if (FlxG.keys.justPressed.EIGHT && Sys.args().contains("-livereload") || mobilePadJustPressed("Y"))
 			convertChart();
 		#end
 
@@ -430,6 +432,11 @@ class FreeplayState extends MusicBeatState
 		updateScore();
 
 		var coopBinds = [CoolUtil.keyToString(Options.P1_CHANGE_MODE[0]), CoolUtil.keyToString(Options.P2_CHANGE_MODE[0])].filter(x -> x != "---");
+		if (controls.mobileC)
+		{
+			if (getMobilePadButton("buttonX") != null)
+				coopBinds = ["X"];
+		}
 		if (coopBinds.length == 2 && coopBinds[1] == coopBinds[0]) coopBinds.pop();
 		else if (coopBinds.length == 0) coopBinds.push("---");
 

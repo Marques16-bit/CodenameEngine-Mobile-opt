@@ -28,7 +28,7 @@ class AdvancedAppearanceOptions extends TreeMenuScreen {
 	var qualityOptions:Array<OptionType> = [];
 
 	public function new() {
-		super('optionsMenu.advanced', 'optionsTree.appearance.advanced-desc', 'AppearanceOptions.Advanced.');
+		super('optionsMenu.advanced', 'optionsTree.appearance.advanced-desc', 'AppearanceOptions.Advanced.', ['LEFT_FULL', 'A_B']);
 
 		add(new ArrayOption(getNameID('quality'), getDescID('quality'),
 			[0, 1, 2], [getID('quality-low'), getID('quality-high'), getID('quality-custom')],

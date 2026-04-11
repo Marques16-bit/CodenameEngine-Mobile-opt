@@ -40,6 +40,22 @@ class WarningState extends MusicBeatState {
 	public override function update(elapsed:Float) {
 		super.update(elapsed);
 
+		#if FLX_TOUCH
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed && transitioning) {
+				FlxG.camera.stopFX(); FlxG.camera.visible = false;
+				goToTitle();
+			} else if (touch.justPressed && !transitioning) {
+				transitioning = true;
+				CoolUtil.playMenuSFX(CONFIRM);
+				FlxG.camera.flash(FlxColor.WHITE, 1, function() {
+					FlxG.camera.fade(FlxColor.BLACK, 2.5, false, goToTitle);
+				});
+			}
+		}
+		#end
+
 		if (controls.ACCEPT && transitioning) {
 			FlxG.camera.stopFX(); FlxG.camera.visible = false;
 			goToTitle();
