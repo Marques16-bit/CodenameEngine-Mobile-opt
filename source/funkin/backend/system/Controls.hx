@@ -413,6 +413,16 @@ class Controls extends FlxActionSet
 
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
+		if (requestedInstance == null) {
+			trace("instance is null");
+		} else {
+			if (requestedInstance.mobileManager == null)
+				trace("mobileManager is null");
+			else {
+				if (requestedInstance.mobileManager.mobilePad == null)
+					trace("mobilePad is null");
+			}
+		}
 		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
 			if (requestedInstance.mobileManager.mobilePad.pressed(keys) == true)
 				return true;

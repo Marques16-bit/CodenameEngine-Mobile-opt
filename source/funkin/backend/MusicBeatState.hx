@@ -152,8 +152,8 @@ class MusicBeatState extends FlxState implements IBeatCancellableReceiver
 		return PlayerSettings.player2.controls;
 
 	public function new(scriptsAllowed:Bool = true, ?scriptName:String) {
-		mobileManager = new MobileControlManager(this);
 		super();
+		mobileManager = new MobileControlManager(this);
 		instance = this;
 		this.scriptsAllowed = #if SOFTCODED_STATES scriptsAllowed #else false #end;
 
