@@ -154,7 +154,6 @@ class MusicBeatState extends FlxState implements IBeatCancellableReceiver
 	public function new(scriptsAllowed:Bool = true, ?scriptName:String) {
 		super();
 		mobileManager = new MobileControlManager(this);
-		instance = this;
 		this.scriptsAllowed = #if SOFTCODED_STATES scriptsAllowed #else false #end;
 
 		if(lastStateName != (lastStateName = Type.getClassName(Type.getClass(this)))) {
@@ -210,6 +209,7 @@ class MusicBeatState extends FlxState implements IBeatCancellableReceiver
 
 	override function create()
 	{
+		instance = this;
 		loadScript();
 		Framerate.offset.y = 0;
 		super.create();

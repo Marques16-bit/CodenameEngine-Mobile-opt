@@ -1,6 +1,7 @@
 #if !macro
 import funkin.options.Options;
 import mobile.objects.FunkinHitbox;
+import funkin.backend.utils.NativeAPI;
 import mobile.objects.FunkinMobilePad;
 import funkin.backend.assets.ModsFolder;
 

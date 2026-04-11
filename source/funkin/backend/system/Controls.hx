@@ -413,18 +413,8 @@ class Controls extends FlxActionSet
 
 	private function mobilePadPressed(keys:Array<String>):Bool
 	{
-		if (requestedInstance == null) {
-			trace("instance is null");
-		} else {
-			if (requestedInstance.mobileManager == null)
-				trace("mobileManager is null");
-			else {
-				if (requestedInstance.mobileManager.mobilePad == null)
-					trace("mobilePad is null");
-			}
-		}
-		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
-			if (requestedInstance.mobileManager.mobilePad.pressed(keys) == true)
+		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
+			if (getRequestedInstance().mobileManager.mobilePad.pressed(keys) == true)
 				return true;
 
 		return false;
@@ -432,8 +422,8 @@ class Controls extends FlxActionSet
 
 	private function mobilePadJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
-			if (requestedInstance.mobileManager.mobilePad.justPressed(keys) == true)
+		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
+			if (getRequestedInstance().mobileManager.mobilePad.justPressed(keys) == true)
 				return true;
 
 		return false;
@@ -441,8 +431,8 @@ class Controls extends FlxActionSet
 
 	private function mobilePadJustReleased(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance?.mobileManager?.mobilePad != null)
-			if (requestedInstance.mobileManager.mobilePad.justReleased(keys) == true)
+		if (keys != null && getRequestedInstance()?.mobileManager?.mobilePad != null)
+			if (getRequestedInstance().mobileManager.mobilePad.justReleased(keys) == true)
 				return true;
 
 		return false;
@@ -450,8 +440,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
-			if (requestedInstance.mobileManager.hitbox.pressed(keys))
+		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
+			if (getRequestedInstance().mobileManager.hitbox.pressed(keys))
 				return true;
 
 		return false;
@@ -459,8 +449,8 @@ class Controls extends FlxActionSet
 
 	private function hitboxJustPressed(keys:Array<String>):Bool
 	{
-		if (keys != null && requestedInstance?.mobileManager?.hitbox != null)
-			if (requestedInstance.mobileManager.hitbox.justPressed(keys))
+		if (keys != null && getRequestedInstance()?.mobileManager?.hitbox != null)
+			if (getRequestedInstance().mobileManager.hitbox.justPressed(keys))
 				return true;
 
 		return false;
@@ -475,9 +465,18 @@ class Controls extends FlxActionSet
 		return false;
 	}
 
-	@:noCompletion
-	private function get_requestedInstance():Dynamic
+	public function getRequestedInstance():Dynamic
 	{
+		if (isInSubstate)
+			return MusicBeatSubstate.instance;
+		else
+			return MusicBeatState.instance;
+	}
+
+	@:noCompletion
+	public function get_requestedInstance():Dynamic
+	{
+		trace('get function works and isInSubstate is ${isInSubstate ? "true" : "false"}');
 		if (isInSubstate)
 			return MusicBeatSubstate.instance;
 		else
