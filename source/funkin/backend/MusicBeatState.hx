@@ -153,13 +153,6 @@ class MusicBeatState extends FlxState implements IBeatCancellableReceiver
 
 	public function new(scriptsAllowed:Bool = true, ?scriptName:String) {
 		super();
-		MobileConfig.init('MobileControls', "ArkoseLabs/CodenameEngine", 'mobile/',
-			[
-				['MobilePad/DPadModes', ButtonModes.DPAD],
-				['MobilePad/ActionModes', ButtonModes.ACTION],
-				['Hitbox/HitboxModes', ButtonModes.HITBOX]
-			]
-		);
 		mobileManager = new MobileControlManager(this);
 		this.scriptsAllowed = #if SOFTCODED_STATES scriptsAllowed #else false #end;
 
