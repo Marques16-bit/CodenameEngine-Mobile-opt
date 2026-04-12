@@ -90,7 +90,7 @@ class MobileUtil {
 		File.saveContent(savesDir + fileName + fileExt, fileData);
 	}
 
-	/**
+		/**
 	 * @param folders Optional list of specific folders (e.g. ["assets/data/"]). If null, copies all assets.
 	 */
 	public static function copyAssets(folders:Array<String> = null, onProgress:String->Int->Int->Void = null, onComplete:Void->Void = null):Void {
@@ -136,8 +136,26 @@ class MobileUtil {
 				if (!FileSystem.exists(directory)) FileSystem.createDirectory(directory);
 
 				if (!FileSystem.exists(fullPath)) {
-					var bytes = Assets.getBytes(assetKey);
-					if (bytes != null) File.saveBytes(fullPath, bytes);
+					var bytes:Bytes = null;
+
+					try {
+						bytes = Assets.getBytes(assetKey);
+					} catch (e:Dynamic) {
+						try {
+							var text:String = Assets.getText(assetKey);
+							if (text != null) {
+								bytes = Bytes.ofString(text);
+							}
+						} catch (e2:Dynamic) {
+							trace('Failed to read text fallback for $assetKey: $e2');
+						}
+					}
+
+					if (bytes != null) {
+						File.saveBytes(fullPath, bytes);
+					} else {
+						trace('Could not extract data for asset: $assetKey');
+					}
 				}
 
 				if (onProgress != null) onProgress(cleanPath, i + 1, total);

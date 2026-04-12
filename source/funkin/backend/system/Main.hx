@@ -73,23 +73,30 @@ class Main extends Sprite
 		MobileUtil.getPermissions();
 		#end
 		Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
+		trace("step 1");
 		MobileUtil.copyAssets();
 		#end
-		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
+		trace("step 2");
 
 		CrashHandler.init();
+		trace("step 3");
 
 		#if !web framerateSprite = new Framerate(); #end
 
+		trace("step 4");
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
+		trace("step 5");
 
 		#if !web
 		addChild(framerateSprite);
+		trace("step 6");
 		#if mobile
 		FlxG.stage.window.onResize.add((w:Int, h:Int) -> framerateSprite.setScale());
 		#end
+		trace("step 7");
 		SystemInfo.init();
 		#end
+		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
 	}
 
 	@:dox(hide)
