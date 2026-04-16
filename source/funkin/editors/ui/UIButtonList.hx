@@ -103,6 +103,24 @@ class UIButtonList<T:UIButton> extends UIWindow {
 		addIcon.x = addButton.x + addButton.bWidth / 2 - addIcon.width / 2;
 		addIcon.y = addButton.y + addButton.bHeight / 2 - addIcon.height / 2;
 	}
+	public function scrollTo(button:T) {
+        if (button == null || buttonCameras == null) return;
+
+        var minY = -buttonSpacing;
+        var maxY = Math.max((addButton.y + 32 + (buttonSpacing*1.5)) - buttonCameras.height, minY);
+
+        var topLimit = nextscrollY;
+        var bottomLimit = nextscrollY + buttonCameras.height;
+
+        if (button.y < topLimit + buttonSpacing) {
+            nextscrollY = button.y - buttonSpacing;
+        } else if (button.y + button.bHeight > bottomLimit - buttonSpacing) {
+            nextscrollY = (button.y + button.bHeight) - buttonCameras.height + buttonSpacing;
+        }
+
+        // Clamp it safely
+        nextscrollY = CoolUtil.bound(nextscrollY, minY, maxY);
+    }
 	public var nextscrollY:Float = 0;
 	public override function update(elapsed:Float) {
 		updateButtonsPos(elapsed);

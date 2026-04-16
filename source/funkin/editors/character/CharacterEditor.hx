@@ -414,14 +414,8 @@ class CharacterEditor extends UIState {
 	}
 
 	inline function handleMobileControls() {
-		if (mobilePadJustPressed("W")) {
-			/* Will done later -ArkoseLabs
-			var scrollY = characterAnimsWindow.nextscrollY;
-			var buttonSpacing = characterAnimsWindow.buttonSpacing;
-			characterAnimsWindow.nextscrollY = CoolUtil.bound(scrollY - 1 * 12, -buttonSpacing, Math.max((characterAnimsWindow.addButton.y + 32 + (buttonSpacing*1.5)) - characterAnimsWindow.buttonCameras.height, -buttonSpacing));
-			*/
+		if (mobilePadJustPressed("W"))
 			_animation_up(null);
-		}
 		if (mobilePadJustPressed("S"))
 			_animation_down(null);
 		if (mobilePadJustPressed("Z"))
@@ -975,20 +969,22 @@ class CharacterEditor extends UIState {
 	// The animation thats playing regardless if its valid or not
 	public var characterFakeAnim:String = "";
 	public function playAnimation(anim:String) @:privateAccess {
-		characterFakeAnim = anim;
-		if (characterAnimsWindow.animButtons[anim] != null && characterAnimsWindow.animButtons[anim].valid) {
-			character.playAnim(anim, true);
-			character.colorTransform.__identity();
-		} else {
-			var validAnimation:String = characterAnimsWindow.findValid();
-			if (validAnimation != null) character.playAnim(validAnimation, true);
-			_animation_stop(null);
-			character.colorTransform.color = 0xFFEF0202;
-		}
+        characterFakeAnim = anim;
+        if (characterAnimsWindow.animButtons[anim] != null && characterAnimsWindow.animButtons[anim].valid) {
+            character.playAnim(anim, true);
+            character.colorTransform.__identity();
+        } else {
+            var validAnimation:String = characterAnimsWindow.findValid();
+            if (validAnimation != null) character.playAnim(validAnimation, true);
+            _animation_stop(null);
+            character.colorTransform.color = 0xFFEF0202;
+        }
 
-		for(i in characterAnimsWindow.buttons.members)
-			i.alpha = i.anim == anim ? 1 : 0.25;
-	}
+        for(i in characterAnimsWindow.buttons.members) {
+            i.alpha = i.anim == anim ? 1 : 0.25;
+            if (i.anim == anim) characterAnimsWindow.scrollTo(i);
+        }
+    }
 	#end
 }
 
