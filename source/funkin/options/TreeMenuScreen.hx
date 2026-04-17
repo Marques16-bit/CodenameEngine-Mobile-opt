@@ -69,6 +69,14 @@ class TreeMenuScreen extends FlxSpriteGroup {
 
 		turboBasics = [leftTurboControl, rightTurboControl, upTurboControl, downTurboControl];
 
+		//fix custom controls
+		if (menuMPadModes == null) {
+			final state = MusicBeatState.instance;
+			this.prevMenuMPadModes = ["UP_DOWN", "A_B"];
+			state.addMobilePad("FULL", "A_B");
+			state.addMobilePadCamera();
+		}
+
 		if (menuMPadModes != null)
 		{
 			final state = MusicBeatState.instance;
