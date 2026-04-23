@@ -1,4 +1,4 @@
-name: iOS Build
+name: iOS Sim Build
 on: workflow_dispatch
 env: 
   PROJECT_NAME: CodenameEngine
