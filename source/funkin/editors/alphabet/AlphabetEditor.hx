@@ -293,8 +293,8 @@ class AlphabetEditor extends UIState {
 
 		addMobilePad("LEFT_RIGHT", "NONE");
 		addMobilePadCamera();
-		mobileManager.mobilePad.x += 225;
-		mobileManager.mobilePad.y -= 25;
+		mobileManager.x += 225;
+		mobileManager.y -= 25;
 	}
 
 	override function destroy() {

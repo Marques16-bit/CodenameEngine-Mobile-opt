@@ -10,7 +10,11 @@ import openfl.utils.AssetManifest;
 
 using StringTools;
 #if MOD_SUPPORT
+#if sys
 import sys.FileSystem;
+#elseif js
+import js.html.FileSystem;
+#end
 #end
 
 

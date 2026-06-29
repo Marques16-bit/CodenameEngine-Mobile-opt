@@ -1,6 +1,10 @@
 package funkin.game;
 
+#if sys
 import sys.FileSystem;
+#elseif js
+import js.html.FileSystem;
+#end
 import flixel.util.FlxSpriteUtil;
 import openfl.display.Graphics;
 import flixel.util.typeLimit.OneOfTwo;

@@ -24,17 +24,6 @@ class TitleState extends MusicBeatState
 	public var blackScreen:FlxSprite;
 	public var textGroup:FlxGroup;
 
-	public function new() {
-		super();
-		MobileConfig.init('MobileControls', "ArkoseLabs/CodenameEngine", 'mobile/',
-			[
-				['MobilePad/DPadModes', ButtonModes.DPAD],
-				['MobilePad/ActionModes', ButtonModes.ACTION],
-				['Hitbox/HitboxModes', ButtonModes.HITBOX]
-			]
-		);
-	}
-
 	override public function create():Void
 	{
 		curWacky = FlxG.random.getObject(getIntroTextShit());

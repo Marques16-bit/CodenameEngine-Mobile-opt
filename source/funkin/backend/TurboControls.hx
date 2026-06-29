@@ -128,13 +128,13 @@ class TurboMobileButton extends TurboBasic {
 	}
 
 	override function get_pressed() {
-		if (MobileInputHandler.instance == null || MobileInputHandler.instance != null && !MobileInputHandler.instance.exists) return false;
+		if (MobileControls.instance == null || MobileControls.instance != null && !MobileControls.instance.exists) return false;
 
 		if (allPress) {
-			for (button in buttons) if (!MobileInputHandler.instance.checkButtonsState([button], PRESSED)) return false;
+			for (button in buttons) if (!MobileControls.instance.checkState(button, "pressed")) return false;
 		}
 		else {
-			for (button in buttons) if (MobileInputHandler.instance.checkButtonsState([button], PRESSED)) return true;
+			for (button in buttons) if (MobileControls.instance.checkState(button, "pressed")) return true;
 		}
 		return allPress;
 	}

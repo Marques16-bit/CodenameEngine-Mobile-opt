@@ -89,7 +89,8 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		addMobilePad("UP_DOWN", "A_B_M_E");
+		addMobilePad('UP_DOWN', 'A_B_M_E');
+		addMobilePadCamera();
 
 		devModeWarning = new FunkinText(0, FlxG.height - 50, 1280, "You have to enable DEVELOPER MODE in the miscellaneous settings!", 24);
 		devModeWarning.alignment = CENTER;
@@ -178,7 +179,8 @@ class MainMenuState extends MusicBeatState
 	override function closeSubState() {
 		super.closeSubState();
 		removeMobilePad();
-		addMobilePad('UP_DOWN', 'MAIN_MENU');
+		addMobilePad('UP_DOWN', 'A_B_M_E');
+		addMobilePadCamera();
 	}
 
 	function selectItem() {

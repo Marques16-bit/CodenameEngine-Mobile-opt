@@ -2,9 +2,14 @@ package commands;
 
 import haxe.xml.Access;
 import haxe.Json;
-import sys.io.File;
 import sys.io.Process;
+#if sys
 import sys.FileSystem;
+import sys.io.File;
+#elseif js
+import js.html.FileSystem;
+import js.html.File;
+#end
 
 class Setup {
 	private static function recursiveDelete(path:String) {

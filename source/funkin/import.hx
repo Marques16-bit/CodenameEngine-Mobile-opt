@@ -32,11 +32,8 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /* Basic Mobile Stuffs */
 import mobile.*;
-import mobile.MobileConfig;
-import mobile.objects.FunkinHitbox;
-import mobile.objects.FunkinMobilePad;
-import mobile.MobileConfig.ButtonModes;
-
+import mobile.flixel.controls.*;
+import mobile.flixel.screen.ScreenUtil;
 import mobile.backend.MobileUtil;
 
 using StringTools;

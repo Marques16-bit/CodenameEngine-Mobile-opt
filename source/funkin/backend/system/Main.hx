@@ -21,8 +21,13 @@ import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.text.TextFormat;
 import openfl.utils.AssetLibrary;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#elseif js
+import js.html.FileSystem;
+import js.html.File;
+#end
 #if android
 import android.content.Context;
 import android.os.Build;

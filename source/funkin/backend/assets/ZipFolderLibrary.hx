@@ -8,7 +8,11 @@ import lime.media.AudioBuffer;
 import lime.text.Font;
 import lime.utils.Bytes;
 import openfl.utils.AssetLibrary;
+#if sys
 import sys.io.File;
+#else
+import js.html.File;
+#end
 
 #if MOD_SUPPORT
 import funkin.backend.utils.SysZip.SysZipEntry;

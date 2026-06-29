@@ -183,7 +183,8 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		addMobilePad('LEFT_FULL', 'A_B_X_Y');
+		addMobilePad('FULL', 'A_B_X_Y');
+		addMobilePadCamera();
 
 		changeSelection(0, true);
 		changeCoopMode(0, true);

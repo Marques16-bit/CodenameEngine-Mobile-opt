@@ -440,7 +440,7 @@ class StageEditor extends UIState {
         FlxG.mouse.getWorldPosition(stageCamera, mousePoint);
 
         if (controls.mobileC) {
-            var touchUtil = mobile.ScreenUtil.touch;
+            var touchUtil = ScreenUtil.touch;
             if (touchUtil.pressed) _isPressed = true;
             if (touchUtil.justPressed) _isJustPressed = true;
             if (touchUtil.justReleased) _isJustReleased = true;
@@ -464,7 +464,7 @@ class StageEditor extends UIState {
             var wheelDelta:Float = FlxG.mouse.wheel;
             
             if (controls.mobileC) {
-                var pDelta = mobile.ScreenUtil.touch.pinchDelta;
+                var pDelta = ScreenUtil.touch.pinchDelta;
                 if (pDelta != 0) {
                     wheelDelta = pDelta * 0.02; 
                 }
@@ -486,7 +486,7 @@ class StageEditor extends UIState {
             }
 
             if (mouseMode == NONE && prevMode == NONE) {
-                var isPinching = controls.mobileC && mobile.ScreenUtil.touch.activeTouchesCount >= 2;
+                var isPinching = controls.mobileC && ScreenUtil.touch.activeTouchesCount >= 2;
                 
                 if (_isPressed && !isPinching) { 
                     movedTillRel.x += _deltaX; movedTillRel.y += _deltaY; 

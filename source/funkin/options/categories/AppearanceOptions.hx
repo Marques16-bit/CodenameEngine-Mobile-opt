@@ -2,7 +2,7 @@ package funkin.options.categories;
 
 class AppearanceOptions extends TreeMenuScreen {
 	public function new() {
-		super('optionsTree.appearance-name', 'optionsTree.appearance-desc', 'AppearanceOptions.', ['LEFT_FULL', 'A_B']);
+		super('optionsTree.appearance-name', 'optionsTree.appearance-desc', 'AppearanceOptions.', ['FULL', 'A_B']);
 
 		add(new NumOption(getNameID('framerate'), getDescID('framerate'),
 			30, 240, 1,
@@ -28,7 +28,7 @@ class AdvancedAppearanceOptions extends TreeMenuScreen {
 	var qualityOptions:Array<OptionType> = [];
 
 	public function new() {
-		super('optionsMenu.advanced', 'optionsTree.appearance.advanced-desc', 'AppearanceOptions.Advanced.', ['LEFT_FULL', 'A_B']);
+		super('optionsMenu.advanced', 'optionsTree.appearance.advanced-desc', 'AppearanceOptions.Advanced.', ['FULL', 'A_B']);
 
 		add(new ArrayOption(getNameID('quality'), getDescID('quality'),
 			[0, 1, 2], [getID('quality-low'), getID('quality-high'), getID('quality-custom')],

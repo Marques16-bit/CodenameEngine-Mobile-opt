@@ -8,7 +8,7 @@
 	<architecture exclude="arm64-v8a" if="ONLY_ARMV7" />
 
 	<app
-		title="Codename Engine Mobile" main="funkin.backend.system.Main"
+		title="Codename Engine" main="funkin.backend.system.Main"
 		file="CodenameEngine" packageName="com.yoshman29.codenameengine"
 		package="com.yoshman29.codenameengine"
 		version="1.0.1" company="Yoshman29" />
@@ -147,7 +147,6 @@
 
 	<haxelib name="hscript-improved" />
 	<haxelib name="mobile-controls" />
-	<haxedef name="mobile_controls_allow_mouse_clicks" if="desktop"/>
 	<haxelib name="hxdiscord_rpc" if="DISCORD_RPC"/>
 	<haxelib name="markdown" />
 	<haxelib name="hxcpp-debug-server" if="TEST_BUILD debug" />

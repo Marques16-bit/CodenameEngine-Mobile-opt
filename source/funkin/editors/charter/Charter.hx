@@ -861,9 +861,9 @@ class Charter extends UIState {
 
 	/* The Function That Checks MobilePad Click */
 	public function isTouchingMobilePad():Bool {
-		if (!controls.mobileC || mobileManager == null || mobileManager.mobilePad == null) return false;
+		if (!controls.mobileC || mobileManager == null) return false;
 
-		if (mobileManager.mobilePad.anyPressed() || mobileManager.mobilePad.anyJustPressed() || mobileManager.mobilePad.anyJustReleased()) {
+		if (mobileManager.checkState("any", "pressed") || mobileManager.checkState("any", "justPressed") || mobileManager.checkState("any", "justReleased")) {
 			return true;
 		}
 

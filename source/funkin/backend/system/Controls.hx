@@ -412,19 +412,19 @@ class Controls extends FlxActionSet
 			switch(type)
 			{
 				case "_P", "_HOLD":
-					var p:Bool = (mobilePadJustPressed(keyMap) || hitboxJustPressed(keyMap));
+					var p:Bool = mobilePadJustPressed(keyMap);
 					if (!p && controlJustPressedCallBack != null)
 						p = controlJustPressedCallBack(keyMap);
 
 					return p;
 				case "_R":
-					var justR:Bool = (mobilePadJustReleased(keyMap) || hitboxJustReleased(keyMap));
+					var justR:Bool = mobilePadJustReleased(keyMap);
 					if (!justR && controlJustReleasedCallBack != null)
 						justR = controlJustReleasedCallBack(keyMap);
 
 					return justR;
 				default:
-					var justP:Bool = (mobilePadPressed(keyMap) || hitboxPressed(keyMap));
+					var justP:Bool = mobilePadPressed(keyMap);
 					if (!justP && controlPressedCallBack != null)
 						justP = controlPressedCallBack(keyMap);
 
@@ -445,15 +445,17 @@ class Controls extends FlxActionSet
 	{
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;
-		//if (localState == null) trace("state is null");
-		//if (localSubstate == null) trace("Substate is null");
 
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
-			if (localSubstate.mobileManager.mobilePad.pressed(keys) == true)
-				return true;
-		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
-			if (localState.mobileManager.mobilePad.pressed(keys) == true)
-				return true;
+		if (isInSubstate && keys != null && localSubstate?.mobileManager != null) {
+			for (key in keys) {
+				if (localSubstate.mobileManager.checkState(key, "pressed") == true)
+					return true;
+			}
+		} else if (keys != null && localState?.mobileManager != null) {
+			for (key in keys) {
+				if (localState.mobileManager?.checkState(key, "pressed") == true)
+					return true;
+			}
 		}
 
 		return false;
@@ -465,12 +467,16 @@ class Controls extends FlxActionSet
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;
 
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
-			if (localSubstate.mobileManager.mobilePad.justPressed(keys) == true)
-				return true;
-		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
-			if (localState.mobileManager.mobilePad.justPressed(keys) == true)
-				return true;
+		if (isInSubstate && keys != null && localSubstate?.mobileManager != null) {
+			for (key in keys) {
+				if (localSubstate.mobileManager.checkState(key, "justPressed") == true)
+					return true;
+			}
+		} else if (keys != null && localState?.mobileManager != null) {
+			for (key in keys) {
+				if (localState.mobileManager.checkState(key, "justPressed") == true)
+					return true;
+			}
 		}
 
 		return false;
@@ -482,63 +488,16 @@ class Controls extends FlxActionSet
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;
 
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.mobilePad != null) {
-			if (localSubstate.mobileManager.mobilePad.justReleased(keys) == true)
-				return true;
-		} else if (keys != null && localState?.mobileManager?.mobilePad != null) {
-			if (localState.mobileManager.mobilePad.justReleased(keys) == true)
-				return true;
-		}
-
-		return false;
-	}
-
-	@:nullSafety(Off)
-	private function hitboxPressed(keys:Array<String>):Bool
-	{
-		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
-		var localState:MusicBeatState = MusicBeatState.instance;
-
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
-			if (localSubstate.mobileManager.hitbox.pressed(keys))
-				return true;
-		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
-			if (localState.mobileManager.hitbox.pressed(keys))
-				return true;
-		}
-
-		return false;
-	}
-
-	@:nullSafety(Off)
-	private function hitboxJustPressed(keys:Array<String>):Bool
-	{
-		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
-		var localState:MusicBeatState = MusicBeatState.instance;
-
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
-			if (localSubstate.mobileManager.hitbox.justPressed(keys))
-				return true;
-		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
-			if (localState.mobileManager.hitbox.justPressed(keys))
-				return true;
-		}
-
-		return false;
-	}
-
-	@:nullSafety(Off)
-	private function hitboxJustReleased(keys:Array<String>):Bool
-	{
-		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
-		var localState:MusicBeatState = MusicBeatState.instance;
-
-		if (isInSubstate && keys != null && localSubstate?.mobileManager?.hitbox != null) {
-			if (localSubstate.mobileManager.hitbox.justReleased(keys))
-				return true;
-		} else if (keys != null && localState?.mobileManager?.hitbox != null) {
-			if (localState.mobileManager.hitbox.justReleased(keys))
-				return true;
+		if (isInSubstate && keys != null && localSubstate?.mobileManager != null) {
+			for (key in keys) {
+				if (localSubstate.mobileManager.checkState(key, "justReleased") == true)
+					return true;
+			}
+		} else if (keys != null && localState?.mobileManager != null) {
+			for (key in keys) {
+				if (localState.mobileManager.checkState(key, "justReleased") == true)
+					return true;
+			}
 		}
 
 		return false;

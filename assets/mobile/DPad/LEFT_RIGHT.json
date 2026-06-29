@@ -1,0 +1,19 @@
+{
+  "dpads": [
+    {
+      "name": "dpad1",
+      "id": ["LEFT", "RIGHT"],
+      "texture": "dpad_left",
+      "subgraphic": {
+        "texture": "dpad_right",
+        "position": [140, 0]
+      },
+      "offset": [[0, 0], [140, 0]],
+      "hitbox": [[130, 130], [130, 130]],
+      "showbounds": false,
+      "position": [10, 585],
+      "scale": 1,
+      "color": null
+    }
+  ]
+}

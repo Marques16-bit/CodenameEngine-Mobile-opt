@@ -1,0 +1,15 @@
+{
+  "buttons": [
+    {
+      "name": "pause",
+      "id": "P",
+      "texture": "button_circle",
+      "position": [1153, 0],
+      "scale": 1.0,
+      "color": null,
+	  "subgraphic": {
+		"texture": "icon_pause"
+	  }
+    }
+  ]
+}

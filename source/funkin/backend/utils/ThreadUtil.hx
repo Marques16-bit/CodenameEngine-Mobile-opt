@@ -1,15 +1,15 @@
 package funkin.backend.utils;
 
+#if !macro
+import funkin.backend.system.Logs;
+#end
+
 #if (target.threaded)
 import sys.thread.Deque;
 import sys.thread.Thread;
 import sys.thread.Mutex;
 #else
 private typedef Thread = Dynamic;
-#end
-
-#if !macro
-import funkin.backend.system.Logs;
 #end
 
 final class ThreadUtil {

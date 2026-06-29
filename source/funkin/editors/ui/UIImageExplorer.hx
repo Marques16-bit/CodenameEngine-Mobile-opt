@@ -8,8 +8,13 @@ import haxe.Json;
 import haxe.io.Bytes;
 import haxe.io.Path;
 import openfl.display.BitmapData;
+#if sys
 import sys.FileSystem;
 import sys.io.File;
+#elseif js
+import js.html.FileSystem;
+import js.html.File;
+#end
 import animate.FlxAnimateJson;
 
 using StringTools;

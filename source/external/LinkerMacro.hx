@@ -4,7 +4,11 @@ import haxe.io.Path;
 import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.xml.Printer;
+#if sys
 import sys.FileSystem;
+#elseif js
+import js.html.FileSystem;
+#end
 
 class LinkerMacro
 {

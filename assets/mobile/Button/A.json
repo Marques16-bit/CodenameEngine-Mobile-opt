@@ -1,0 +1,15 @@
+{
+  "buttons": [
+    {
+      "name": "buttonA",
+      "id": "A",
+      "texture": "button_circle",
+      "position": [1153, 593],
+      "scale": 1.0,
+      "color": null,
+	  "subgraphic": {
+		"texture": "icon_a"
+	  }
+    }
+  ]
+}
