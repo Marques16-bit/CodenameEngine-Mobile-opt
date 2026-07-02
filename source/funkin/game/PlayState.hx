@@ -1096,8 +1096,8 @@
 			addHitbox(Options.hitboxMode + extraKeyString);
 			addHitboxCamera();
 			for (hitbox in mobileManager.hitboxes) {
-				if (getMobilePadButton("buttonP") != null)
-					hitbox.deadZones.push(getMobilePadButton("buttonP"));
+				if (getMobilePadButton("pause") != null)
+					hitbox.deadZones.push(getMobilePadButton("pause"));
 			}
 			gameAndCharsCall("onSongStart");
 			startingSong = false;
