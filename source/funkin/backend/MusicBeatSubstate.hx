@@ -86,25 +86,30 @@ class MusicBeatSubstate extends FlxSubState implements IBeatCancellableReceiver
 		mobileManager.addButtonCamera();
 	}
 	*/
+	/* DPad */
 	public function addDPad(DPad:String) {
 		mobileManager.addDPad(DPad);
-	}
-	public function addButton(Action:String) {
-		mobileManager.addButton(Action);
 	}
 	public function removeDPad() {
 		mobileManager.removeDPad();
 	}
-	public function removeButton() {
-		mobileManager.removeButton();
-	}
 	public function addDPadCamera() {
 		mobileManager.addDPadCamera();
+	}
+
+	/* Button */
+	public function addButton(Action:String) {
+		mobileManager.addButton(Action);
+	}
+	public function removeButton() {
+		mobileManager.removeButton();
 	}
 	public function addButtonCamera() {
 		mobileManager.addButtonCamera();
 	}
-	public function addHitbox(?mode:String, ?hints:Bool):Void {
+
+	/* Hitbox */
+	public function addHitbox(?mode:String = "Normal"):Void {
 		mobileManager.addHitbox(mode);
 	}
 	public function removeHitbox() {
@@ -112,6 +117,17 @@ class MusicBeatSubstate extends FlxSubState implements IBeatCancellableReceiver
 	}
 	public function addHitboxCamera(defaultDrawTarget:Bool = false):Void {
 		mobileManager.addHitboxCamera();
+	}
+
+	/* JoyStick */
+	public function addJoyStick(joy:String) {
+		mobileManager.addJoyStick(joy);
+	}
+	public function removeJoyStick() {
+		mobileManager.removeJoyStick();
+	}
+	public function addJoyStickCamera() {
+		mobileManager.addJoyStickCamera();
 	}
 
 	private var lastBeat:Float = 0;
