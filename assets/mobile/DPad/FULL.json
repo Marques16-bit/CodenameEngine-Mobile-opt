@@ -8,8 +8,7 @@
       "hitbox": [[100, 100], [100, 100], [100, 100], [100, 100]],
       "showbounds": false,
       "position": [10, 467],
-      "scale": 1.0,
-      "color": null
+      "scale": 1.0
     }
   ]
 }

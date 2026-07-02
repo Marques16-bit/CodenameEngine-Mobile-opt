@@ -291,8 +291,8 @@ class AlphabetEditor extends UIState {
 
 		DiscordUtil.call("onEditorLoaded", ["Alphabet Editor", __typeface]);
 
-		addMobilePad("LEFT_RIGHT", "NONE");
-		addMobilePadCamera();
+		addDPad("LEFT_RIGHT");
+		addDPadCamera();
 		mobileManager.x += 225;
 		mobileManager.y -= 25;
 	}
@@ -387,9 +387,9 @@ class AlphabetEditor extends UIState {
 	}
 
 	function handleMobileControl() {
-		if (mobilePadJustPressed("LEFT"))
+		if (mobileCJustPressed("LEFT"))
 			_tape_left(null);
-		if (mobilePadJustPressed("RIGHT"))
+		if (mobileCJustPressed("RIGHT"))
 			_tape_right(null);
 	}
 

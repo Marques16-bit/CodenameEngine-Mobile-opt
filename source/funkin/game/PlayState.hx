@@ -912,8 +912,8 @@
 				e.cameras = [camHUD];
 			#end
 
-			addMobilePad('NONE', 'P');
-			addMobilePadCamera();
+			addButton("P");
+			addButtonCamera();
 
 			startingSong = true;
 
@@ -955,7 +955,7 @@
 
 			if (mobileManager != null) {
 					addHitboxCamera();
-					addMobilePadCamera();
+					addButtonCamera();
 			}
 		}
 

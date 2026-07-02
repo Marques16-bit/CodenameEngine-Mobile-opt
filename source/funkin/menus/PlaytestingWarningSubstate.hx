@@ -69,7 +69,10 @@ class PlaytestingWarningSubstate extends MusicBeatSubstate
 		curSelected = options.length-1;
 		changeSelection(0);
 
-		addMobilePad('LEFT_RIGHT', 'A');
+		addDPad("LEFT_RIGHT");
+		addButton("A");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	var sinner:Float = 0;

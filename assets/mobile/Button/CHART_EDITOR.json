@@ -5,10 +5,10 @@
       "id": "A",
       "texture": "button_circle",
       "position": [1150, 600],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_a"
+        "texture": "icon_a",
+		"scale": 4
       }
     },
     {
@@ -16,10 +16,10 @@
       "id": "B",
       "texture": "button_circle",
       "position": [1045, 600],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_b"
+        "texture": "icon_b",
+		"scale": 4
       }
     },
     {
@@ -27,10 +27,10 @@
       "id": "C",
       "texture": "button_circle",
       "position": [940, 600],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_c"
+        "texture": "icon_c",
+		"scale": 4
       }
     },
     {
@@ -38,10 +38,10 @@
       "id": "X",
       "texture": "button_circle",
       "position": [1150, 495],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_x"
+        "texture": "icon_x",
+		"scale": 4
       }
     },
     {
@@ -49,10 +49,10 @@
       "id": "Y",
       "texture": "button_circle",
       "position": [1045, 495],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_y"
+        "texture": "icon_y",
+		"scale": 4
       }
     },
     {
@@ -60,10 +60,10 @@
       "id": "Z",
       "texture": "button_circle",
       "position": [940, 495],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_z"
+        "texture": "icon_z",
+		"scale": 4
       }
     },
     {
@@ -71,10 +71,10 @@
       "id": "V",
       "texture": "button_circle",
       "position": [1150, 390],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_v"
+        "texture": "icon_v",
+		"scale": 4
       }
     },
     {
@@ -82,10 +82,10 @@
       "id": "O",
       "texture": "button_circle",
       "position": [1045, 390],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_o"
+        "texture": "icon_o",
+		"scale": 4
       }
     },
     {
@@ -93,10 +93,10 @@
       "id": "P",
       "texture": "button_circle",
       "position": [940, 390],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_p"
+        "texture": "icon_p",
+		"scale": 4
       }
     },
     {
@@ -104,10 +104,10 @@
       "id": "D",
       "texture": "button_circle",
       "position": [1150, 285],
-      "scale": 0.85,
-      "color": null,
+      "scale": 0.2125,
       "subgraphic": {
-        "texture": "icon_d"
+        "texture": "icon_d",
+		"scale": 4
       }
     }
   ]

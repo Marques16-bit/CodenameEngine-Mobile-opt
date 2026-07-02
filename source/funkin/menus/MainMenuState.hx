@@ -89,8 +89,10 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
-		addMobilePad('UP_DOWN', 'A_B_M_E');
-		addMobilePadCamera();
+		addDPad("UP_DOWN");
+		addButton("A_B_M_E");
+		addDPadCamera();
+		addButtonCamera();
 
 		devModeWarning = new FunkinText(0, FlxG.height - 50, 1280, "You have to enable DEVELOPER MODE in the miscellaneous settings!", 24);
 		devModeWarning.alignment = CENTER;
@@ -124,7 +126,7 @@ class MainMenuState extends MusicBeatState
 				}
 				*/
 			}
-			if (!Options.devMode && (FlxG.keys.justPressed.SEVEN || mobilePadJustPressed("DEV_ACCESS"))) {
+			if (!Options.devMode && (FlxG.keys.justPressed.SEVEN || mobileCJustPressed("DEV_ACCESS"))) {
 				FlxG.sound.play(Paths.sound(Flags.DEFAULT_EDITOR_DELETE_SOUND));
 				if (devModeCount++ == 2) {
 					FlxTween.tween(devModeWarning, {alpha: 1}, 0.4);
@@ -178,9 +180,12 @@ class MainMenuState extends MusicBeatState
 
 	override function closeSubState() {
 		super.closeSubState();
-		removeMobilePad();
-		addMobilePad('UP_DOWN', 'A_B_M_E');
-		addMobilePadCamera();
+		removeDPad();
+		removeButton();
+		addDPad("UP_DOWN");
+		addButton("A_B_M_E");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	function selectItem() {

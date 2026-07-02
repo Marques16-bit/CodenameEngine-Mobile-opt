@@ -575,8 +575,10 @@ class Charter extends UIState {
 		// add the ui group
 		add(uiGroup);
 
-		addMobilePad("CHART_EDITOR", "CHART_EDITOR");
-		addMobilePadCamera();
+		addDPad("CHART_EDITOR");
+		addButton("CHART_EDITOR");
+		addDPadCamera();
+		addButtonCamera();
 
 		loadSong();
 
@@ -892,8 +894,8 @@ class Charter extends UIState {
 			pointerJustPressed = ScreenUtil.touch.justPressed;
 			pointerJustReleased = ScreenUtil.touch.justReleased;
 
-			pointerJustPressedRight = mobilePadJustPressed("R");
-			pointerJustReleasedRight = mobilePadJustReleased("R");
+			pointerJustPressedRight = mobileCJustPressed("R");
+			pointerJustReleasedRight = mobileCJustReleased("R");
 		} else {
 			FlxG.mouse.getWorldPosition(charterCamera, mousePos);
 			pointerPressed = FlxG.mouse.pressed;
@@ -1402,28 +1404,28 @@ class Charter extends UIState {
 
 	public function handleMobileInputs() {
 		// DPadMode
-		if (mobilePadPressed("LEFT")) sideScroll -= 20;
-		if (mobilePadPressed("RIGHT")) sideScroll += 20;
-		if (mobilePadPressed("UP")) Conductor.songPosition -= Conductor.stepCrochet;
-		if (mobilePadPressed("DOWN")) Conductor.songPosition += Conductor.stepCrochet;
-		if (mobilePadJustPressed("UP2")) _note_subtractsustain(null);
-		if (mobilePadJustPressed("DOWN2")) _note_addsustain(null);
+		if (mobileCPressed("LEFT")) sideScroll -= 20;
+		if (mobileCPressed("RIGHT")) sideScroll += 20;
+		if (mobileCPressed("UP")) Conductor.songPosition -= Conductor.stepCrochet;
+		if (mobileCPressed("DOWN")) Conductor.songPosition += Conductor.stepCrochet;
+		if (mobileCJustPressed("UP2")) _note_subtractsustain(null);
+		if (mobileCJustPressed("DOWN2")) _note_addsustain(null);
 
 		// ActionMode
-		if (mobilePadJustPressed("A")) _chart_playtest(null);
-		if (mobilePadJustPressed("B")) _playback_play(null);
-		if (mobilePadJustPressed("C")) _edit_copy(null);
-		if (mobilePadJustPressed("X")) _edit_cut(null);
-		if (mobilePadJustPressed("Y")) _edit_redo(null);
-		if (mobilePadJustPressed("Z")) _edit_undo(null);
-		if (mobilePadJustPressed("V")) _edit_paste(null);
-		if (mobilePadJustPressed("O")) _opponent_camera_add(null);
-		if (mobilePadJustPressed("P")) _player_camera_add(null);
-		if (mobilePadJustPressed("D")) _edit_delete(null);
+		if (mobileCJustPressed("A")) _chart_playtest(null);
+		if (mobileCJustPressed("B")) _playback_play(null);
+		if (mobileCJustPressed("C")) _edit_copy(null);
+		if (mobileCJustPressed("X")) _edit_cut(null);
+		if (mobileCJustPressed("Y")) _edit_redo(null);
+		if (mobileCJustPressed("Z")) _edit_undo(null);
+		if (mobileCJustPressed("V")) _edit_paste(null);
+		if (mobileCJustPressed("O")) _opponent_camera_add(null);
+		if (mobileCJustPressed("P")) _player_camera_add(null);
+		if (mobileCJustPressed("D")) _edit_delete(null);
 
 		// Unused Buttons
-		if (mobilePadJustPressed("PLUS")) _view_zoomin(null);
-		if (mobilePadJustPressed("MINUS")) _view_zoomout(null);
+		if (mobileCJustPressed("PLUS")) _view_zoomin(null);
+		if (mobileCJustPressed("MINUS")) _view_zoomout(null);
 	}
 
 	var __crochet:Float;

@@ -183,8 +183,10 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		addMobilePad('FULL', 'A_B_X_Y');
-		addMobilePadCamera();
+		addDPad("FULL");
+		addButton("A_B_X_Y");
+		addDPadCamera();
+		addButtonCamera();
 
 		changeSelection(0, true);
 		changeCoopMode(0, true);
@@ -242,7 +244,7 @@ class FreeplayState extends MusicBeatState
 		if (canSelect) {
 			changeSelection((controls.UP_P ? -1 : 0) + (controls.DOWN_P ? 1 : 0) - FlxG.mouse.wheel);
 			changeDiff((controls.LEFT_P ? -1 : 0) + (controls.RIGHT_P ? 1 : 0));
-			changeCoopMode(((controls.CHANGE_MODE || mobilePadJustPressed("X")) ? 1 : 0)); // TODO: make this configurable
+			changeCoopMode(((controls.CHANGE_MODE || mobileCJustPressed("X")) ? 1 : 0)); // TODO: make this configurable
 			// putting it before so that its actually smooth
 			updateOptionsAlpha();
 		}
@@ -305,7 +307,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		#if sys
-		if (FlxG.keys.justPressed.EIGHT && Sys.args().contains("-livereload") || mobilePadJustPressed("Y"))
+		if (FlxG.keys.justPressed.EIGHT && Sys.args().contains("-livereload") || mobileCJustPressed("Y"))
 			convertChart();
 		#end
 

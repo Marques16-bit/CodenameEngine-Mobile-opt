@@ -109,8 +109,10 @@ class OptionsMenu extends TreeMenu {
 			}
 		}
 
-		addMobilePad("UP_DOWN", "A_B");
-		addMobilePadCamera();
+		addDPad("UP_DOWN");
+		addButton("A_B");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	function checkDebugOption() {

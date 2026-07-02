@@ -92,8 +92,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		DiscordUtil.call("onGameOver", []);
 		gameoverScript.call("postCreate");
 
-		addMobilePad('NONE', 'A_B');
-		addMobilePadCamera();
+		addButton("A_B");
+		addButtonCamera();
 	}
 
 	override function update(elapsed:Float)

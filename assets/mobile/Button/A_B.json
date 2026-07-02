@@ -5,10 +5,10 @@
       "id": "ACCEPT",
       "texture": "button_circle",
       "position": [1153, 593],
-      "scale": 1.0,
-      "color": null,
+      "scale": 0.24,
 	  "subgraphic": {
-		"texture": "icon_a"
+		"texture": "icon_a",
+		"scale": 4
 	  }
     },
     {
@@ -16,10 +16,10 @@
       "id": "BACK",
       "texture": "button_circle",
       "position": [1033, 593],
-      "scale": 1.0,
-      "color": null,
+      "scale": 0.24,
 	  "subgraphic": {
-		"texture": "icon_b"
+		"texture": "icon_b",
+		"scale": 4
 	  }
     }
   ]

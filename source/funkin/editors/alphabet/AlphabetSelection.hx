@@ -33,8 +33,10 @@ class AlphabetSelectionScreen extends EditorTreeMenuScreen {
 		
 		final state = MusicBeatState.instance;
 		if (state != null) {
-			state.addMobilePad("UP_DOWN", "A_B");
-			state.addMobilePadCamera();
+			state.addDPad("UP_DOWN");
+			state.addButton("A_B");
+			state.addDPadCamera();
+			state.addButtonCamera();
 		}
 	}
 }

@@ -131,8 +131,10 @@ class PauseSubState extends MusicBeatSubstate
 		pauseScript.call("postCreate");
 		game.updateDiscordPresence();
 
-		addMobilePad('UP_DOWN', 'A');
-		addMobilePadCamera();
+		addDPad("UP_DOWN");
+		addButton("A");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	override function update(elapsed:Float)
@@ -173,7 +175,8 @@ class PauseSubState extends MusicBeatSubstate
 				FlxG.resetState();
 			case "Change Controls":
 				persistentDraw = false;
-				removeMobilePad();
+				removeDPad();
+				removeButton();
 				openSubState(new KeybindsOptions());
 			case "Change Options":
 				FlxG.switchState(new OptionsMenu((_) -> FlxG.switchState(new PlayState())));
@@ -213,9 +216,12 @@ class PauseSubState extends MusicBeatSubstate
 	override function closeSubState() {
 		persistentUpdate = true;
 		super.closeSubState();
-		removeMobilePad();
-		addMobilePad('UP_DOWN', 'A');
-		addMobilePadCamera();
+		removeDPad();
+		removeButton();
+		addDPad("UP_DOWN");
+		addButton("A");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	function changeSelection(change:Int = 0):Void

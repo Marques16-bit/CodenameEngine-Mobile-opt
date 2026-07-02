@@ -19,8 +19,10 @@ class CharterSelection extends EditorTreeMenu {
 		bgType = 'charter';
 
 		final state = MusicBeatState.instance;
-		state.addMobilePad("FULL", "A_B");
-		state.addMobilePadCamera();
+		state.addDPad("FULL");
+		state.addButton("A_B");
+		state.addDPadCamera();
+		state.addButtonCamera();
 	}
 }
 

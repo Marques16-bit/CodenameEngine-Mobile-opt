@@ -85,8 +85,10 @@ class EditorPicker extends MusicBeatSubstate {
 
 		FlxG.mouse.getScreenPosition(subCam, oldMousePos);
 
-		addMobilePad('UP_DOWN', 'A_B');
-		addMobilePadCamera();
+		addDPad("UP_DOWN");
+		addButton("A_B");
+		addDPadCamera();
+		addButtonCamera();
 	}
 
 	public override function update(elapsed:Float) {

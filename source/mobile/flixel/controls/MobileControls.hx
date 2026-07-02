@@ -117,6 +117,7 @@ class MobileControls extends FlxSpriteGroup {
 		if (parsed.buttons != null) {
 			for (data in parsed.buttons) {
 				var btn = new Button(data);
+				btn.antialiasing = Options.antialiasing;
 				addControl(btn);
 				buttons.push(btn);
 			}
@@ -139,6 +140,7 @@ class MobileControls extends FlxSpriteGroup {
 		if (parsed.dpads != null) {
 			for (data in parsed.dpads) {
 				var dpad = new DPad(data);
+				dpad.antialiasing = Options.antialiasing;
 				addControl(dpad);
 				dpads.push(dpad);
 			}
@@ -161,6 +163,7 @@ class MobileControls extends FlxSpriteGroup {
 		if (parsed.joysticks != null) {
 			for (data in parsed.joysticks) {
 				var joy = new Joystick(data);
+				joy.antialiasing = Options.antialiasing;
 				addControl(joy);
 				joysticks.push(joy);
 			}
@@ -182,6 +185,7 @@ class MobileControls extends FlxSpriteGroup {
 		if (parsed.hitboxes != null) {
 			for (data in parsed.hitboxes) {
 				var box = new Hitbox(data);
+				box.antialiasing = Options.antialiasing;
 				addControl(box);
 				hitboxes.push(box);
 			}

@@ -6,7 +6,6 @@
       "texture": "button_circle",
       "position": [670, 600],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_s"
       }
@@ -17,7 +16,6 @@
       "texture": "button_circle",
       "position": [560, 600],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_y"
       }
@@ -28,7 +26,6 @@
       "texture": "button_circle",
       "position": [450, 600],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_v"
       }
@@ -39,7 +36,6 @@
       "texture": "button_circle",
       "position": [670, 495],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_w"
       }
@@ -50,7 +46,6 @@
       "texture": "button_circle",
       "position": [560, 495],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_z"
       }
@@ -61,7 +56,6 @@
       "texture": "button_circle",
       "position": [450, 495],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_c"
       }
@@ -72,7 +66,6 @@
       "texture": "button_circle",
       "position": [670, 390],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_p"
       }
@@ -83,7 +76,6 @@
       "texture": "button_circle",
       "position": [560, 390],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_2"
       }
@@ -94,7 +86,6 @@
       "texture": "button_circle",
       "position": [450, 390],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_1"
       }
@@ -105,7 +96,6 @@
       "texture": "button_circle",
       "position": [670, 285],
       "scale": 0.85,
-      "color": null,
       "subgraphic": {
         "texture": "icon_d"
       }

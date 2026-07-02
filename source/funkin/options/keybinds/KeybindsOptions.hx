@@ -224,8 +224,8 @@ class KeybindsOptions extends MusicBeatSubstate {
 		FlxG.sound.volumeDownKeys = [];
 		FlxG.sound.muteKeys = [];
 
-		addMobilePad("NONE", "B");
-		addMobilePadCamera();
+		addButton("B");
+		addButtonCamera();
 	}
 
 	public override function destroy() {

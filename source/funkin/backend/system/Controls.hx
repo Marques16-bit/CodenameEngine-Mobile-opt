@@ -412,19 +412,19 @@ class Controls extends FlxActionSet
 			switch(type)
 			{
 				case "_P", "_HOLD":
-					var p:Bool = mobilePadJustPressed(keyMap);
+					var p:Bool = mobileCJustPressed(keyMap);
 					if (!p && controlJustPressedCallBack != null)
 						p = controlJustPressedCallBack(keyMap);
 
 					return p;
 				case "_R":
-					var justR:Bool = mobilePadJustReleased(keyMap);
+					var justR:Bool = mobileCJustReleased(keyMap);
 					if (!justR && controlJustReleasedCallBack != null)
 						justR = controlJustReleasedCallBack(keyMap);
 
 					return justR;
 				default:
-					var justP:Bool = mobilePadPressed(keyMap);
+					var justP:Bool = mobileCPressed(keyMap);
 					if (!justP && controlPressedCallBack != null)
 						justP = controlPressedCallBack(keyMap);
 
@@ -441,7 +441,7 @@ class Controls extends FlxActionSet
 	public var mobileC(get, never):Bool;
 
 	@:nullSafety(Off)
-	private function mobilePadPressed(keys:Array<String>):Bool
+	private function mobileCPressed(keys:Array<String>):Bool
 	{
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;
@@ -462,7 +462,7 @@ class Controls extends FlxActionSet
 	}
 
 	@:nullSafety(Off)
-	private function mobilePadJustPressed(keys:Array<String>):Bool
+	private function mobileCJustPressed(keys:Array<String>):Bool
 	{
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;
@@ -483,7 +483,7 @@ class Controls extends FlxActionSet
 	}
 
 	@:nullSafety(Off)
-	private function mobilePadJustReleased(keys:Array<String>):Bool
+	private function mobileCJustReleased(keys:Array<String>):Bool
 	{
 		var localSubstate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var localState:MusicBeatState = MusicBeatState.instance;

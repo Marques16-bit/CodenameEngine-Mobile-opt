@@ -34,7 +34,8 @@ class EditorTreeMenu extends funkin.options.TreeMenu {
 	}
 
 	override function destroy() {
-		MusicBeatState.instance.removeMobilePad();
+		MusicBeatState.instance.removeDPad();
+		MusicBeatState.instance.removeButton();
 		super.destroy();
 	}
 

@@ -5,10 +5,10 @@
       "id": "P",
       "texture": "button_circle",
       "position": [1153, 0],
-      "scale": 1.0,
-      "color": null,
+      "scale": 0.24,
 	  "subgraphic": {
-		"texture": "icon_pause"
+		"texture": "icon_pause",
+		"scale": 4
 	  }
     }
   ]

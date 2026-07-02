@@ -73,8 +73,10 @@ class TreeMenuScreen extends FlxSpriteGroup {
 		if (menuMPadModes == null) {
 			final state = MusicBeatState.instance;
 			this.prevMenuMPadModes = ["UP_DOWN", "A_B"];
-			state.addMobilePad("FULL", "A_B");
-			state.addMobilePadCamera();
+			state.addDPad("FULL");
+			state.addButton("A_B");
+			state.addDPadCamera();
+			state.addButtonCamera();
 		}
 
 		if (menuMPadModes != null)
@@ -82,10 +84,13 @@ class TreeMenuScreen extends FlxSpriteGroup {
 			final state = MusicBeatState.instance;
 			if (state != null && state.mobileManager != null) {
 				this.prevMenuMPadModes = [state.mobileManager.curDPadMode, state.mobileManager.curActionMode];
-				state.removeMobilePad();
+				state.removeDPad();
+				state.removeButton();
 
-				state.addMobilePad(menuMPadModes[0], menuMPadModes[1]);
-				state.addMobilePadCamera();
+				state.addDPad(menuMPadModes[0]);
+				state.addButton(menuMPadModes[1]);
+				state.addDPadCamera();
+				state.addButtonCamera();
 			}
 		}
 
@@ -181,9 +186,12 @@ class TreeMenuScreen extends FlxSpriteGroup {
 		{
 			final state = MusicBeatState.instance;
 			if (state != null && state.mobileManager != null) {
-				state.removeMobilePad();
-				state.addMobilePad(prevMenuMPadModes[0], prevMenuMPadModes[1]);
-				state.addMobilePadCamera();
+				state.removeDPad();
+				state.removeButton();
+				state.addDPad(prevMenuMPadModes[0]);
+				state.addButton(prevMenuMPadModes[1]);
+				state.addDPadCamera();
+				state.addButtonCamera();
 			}
 			
 		}

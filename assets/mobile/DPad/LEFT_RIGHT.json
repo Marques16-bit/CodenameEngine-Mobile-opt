@@ -1,19 +1,24 @@
 {
   "dpads": [
     {
-      "name": "dpad1",
-      "id": ["LEFT", "RIGHT"],
+      "name": "dpadLeft",
+      "id": ["LEFT"],
       "texture": "dpad_left",
-      "subgraphic": {
-        "texture": "dpad_right",
-        "position": [140, 0]
-      },
-      "offset": [[0, 0], [140, 0]],
-      "hitbox": [[130, 130], [130, 130]],
+      "offset": [[0, 0]],
+      "hitbox": [[130, 130]],
       "showbounds": false,
-      "position": [10, 585],
-      "scale": 1,
-      "color": null
+      "position": [10, 615],
+      "scale": 0.9
+    },
+	{
+      "name": "dpadRight",
+      "id": ["RIGHT"],
+      "texture": "dpad_right",
+      "offset": [[0, 0]],
+      "hitbox": [[130, 130]],
+      "showbounds": false,
+      "position": [140, 615],
+      "scale": 0.9
     }
   ]
 }
