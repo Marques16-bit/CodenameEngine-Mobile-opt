@@ -23,7 +23,7 @@
     },
     {
       "name": "buttonNote4",
-      "id": "NOTE_DOWN",
+      "id": "NOTE_RIGHT",
       "position": [960, 0],
       "scale": [320, 720],
       "color": "0xFFF9393F"
