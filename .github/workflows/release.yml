@@ -19,17 +19,11 @@ jobs:
           name: Codename Engine Android
           path: ${{ github.workspace }}
 
-      - name: Move Android File
-        run: mv "${{ github.workspace }}/CodenameEngine-release.apk" "${{ github.workspace }}/Codename Engine-Android.apk"
-
       - name: Download iOS Build
         uses: actions/download-artifact@main
         with:
           name: Codename Engine iOS
           path: ${{ github.workspace }}
-
-      - name: Move iOS File
-        run: mv "${{ github.workspace }}/CodenameEngine.ipa" "${{ github.workspace }}/Codename Engine-iOS.ipa"
 
       - name: Publish The Release
         uses: softprops/action-gh-release@v2
