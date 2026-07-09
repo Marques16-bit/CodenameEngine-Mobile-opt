@@ -223,4 +223,83 @@ class Paths
 		return false;
 	}
 
-	static function loadFrames(path:String, Unique:Bool = false,
+	static function loadFrames(path:String, Unique:Bool = false, Key:String = null, SkipAtlasCheck:Bool = false, SkipMultiCheck:Bool = false, ?Ext:String = null, ?animateSettings:FlxAnimateSettings):FlxFramesCollection {
+		var noExt = Path.withoutExtension(path);
+		var ext = Ext != null ? Ext : Flags.IMAGE_EXT;
+
+		if (!SkipMultiCheck && openfl.utils.Assets.exists('$noExt/1.${ext}')) {
+			var graphic = FlxG.bitmap.add("flixel/images/logo/default.png", false, '$noExt/mult');
+			var frames = MultiFramesCollection.findFrame(graphic);
+			if (frames != null)
+				return frames;
+
+			trace("no frames yet for multiple atlases!!");
+			var cur = 1;
+			var finalFrames = new MultiFramesCollection(graphic);
+			while(openfl.utils.Assets.exists('$noExt/$cur.${ext}')) {
+				var spr = loadFrames('$noExt/$cur.${ext}', false, null, false, true);
+				finalFrames.addFrames(spr);
+				cur++;
+			}
+			return finalFrames;
+		} else if (openfl.utils.Assets.exists('$noExt/Animation.json')) {
+			return Paths.getAnimateAtlasAlt(noExt, animateSettings);
+		} else if (openfl.utils.Assets.exists('$noExt.xml')) {
+			return Paths.getSparrowAtlasAlt(noExt, ext);
+		} else if (openfl.utils.Assets.exists('$noExt.txt')) {
+			return Paths.getPackerAtlasAlt(noExt, ext);
+		} else if (openfl.utils.Assets.exists('$noExt.json')) {
+			return Paths.getAsepriteAtlasAlt(noExt, ext);
+		}
+
+		var graph:FlxGraphic = FlxG.bitmap.add(path, Unique, Key);
+		if (graph == null)
+			return null;
+		return graph.imageFrame;
+	}
+
+	public static function getFolderDirectories(key:String, addPath:Bool = false, source:AssetSource = BOTH):Array<String> {
+		if (!key.endsWith("/")) key += "/";
+		var content = assetsTree.getFolders('assets/$key', source);
+		if (addPath) {
+			for(k=>e in content)
+				content[k] = '$key$e';
+		}
+		return content;
+	}
+	static public function getFolderContent(key:String, addPath:Bool = false, source:AssetSource = BOTH, noExtension:Bool = false):Array<String> {
+		if (!key.endsWith("/")) key += "/";
+		var content = assetsTree.getFiles('assets/$key', source);
+		for (k => e in content) {
+			if (noExtension) e = Path.withoutExtension(e);
+			content[k] = addPath ? '$key$e' : e;
+		}
+		return content;
+	}
+
+	@:noCompletion public static function getFilenameFromLibFile(path:String) {
+		var file = new haxe.io.Path(path);
+		if(file.file.startsWith("LIB_")) {
+			return file.dir + "." + file.ext;
+		}
+		return path;
+	}
+
+	@:noCompletion public static function getLibFromLibFile(path:String) {
+		var file = new haxe.io.Path(path);
+		if(file.file.startsWith("LIB_")) {
+			return file.file.substr(4);
+		}
+		return "";
+	}
+}
+
+class ScriptPathInfo {
+	public var file:String;
+	public var library:AssetLibrary;
+
+	public function new(file:String, library:AssetLibrary) {
+		this.file = file;
+		this.library = library;
+	}
+}
