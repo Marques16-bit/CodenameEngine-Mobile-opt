@@ -105,6 +105,10 @@ class Paths
 	}
 
 	static public function image(key:String, ?library:String, checkForAtlas:Bool = false, ?ext:String) {
+		// ðŸŒŸ INTERCEPTADOR .OPT PROFISSIONAL
+		var optPath = getPath('images/$key.opt', library);
+		if (OpenFlAssets.exists(optPath)) return optPath;
+
 		if (ext == null) ext = Flags.IMAGE_EXT;
 		if (checkForAtlas) {
 			var atlasPath = getPath('images/$key/spritemap.$ext', library);
