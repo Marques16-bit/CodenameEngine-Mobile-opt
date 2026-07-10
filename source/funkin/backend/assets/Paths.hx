@@ -154,14 +154,6 @@ class Paths
 	}
 
 	static function imagePath(key:String, ?library:String, checkForAtlas:Bool = false, ext:String = "png") {
-		// Intercepta e dá prioridade máxima para o arquivo .opt tanto em PC quanto Celular
-		if (ext == "png" || ext == Flags.IMAGE_EXT) {
-			var optPath = getPath('images/$key.opt', library);
-			if (optPath != null && OpenFlAssets.exists(optPath)) {
-				return optPath;
-			}
-		}
-
 		if (checkForAtlas) {
 			var atlasPath = getPath('images/$key/spritemap.$ext', library);
 			var multiplePath = getPath('images/$key/1.$ext', library);
@@ -173,12 +165,6 @@ class Paths
 
 	static public function image(key:String, ?library:String, checkForAtlas:Bool = false, ?ext:String) {
 		if (ext == null) ext = Flags.IMAGE_EXT;
-
-		// Checagem extra de segurança para o .opt no retorno global
-		var optPath = getPath('images/$key.opt', library);
-		if (optPath != null && OpenFlAssets.exists(optPath)) {
-			return optPath;
-		}
 
 		if (Flags.ASTC_TEXTURES && Flags.ASTC_PREFER_RUNTIME && ext == Flags.IMAGE_EXT) {
 			var astcPath = imagePath(key, library, checkForAtlas, Flags.ASTC_IMAGE_EXT);
@@ -341,11 +327,7 @@ class Paths
 		var noExt = Path.withoutExtension(path);
 		var ext = Ext != null ? Ext : Flags.IMAGE_EXT;
 		var pathExt = Path.extension(path);
-		
-		// Detecção especial para arquivos com extensão .opt
-		if (pathExt != null && pathExt.toLowerCase() == "opt")
-			ext = "opt";
-		else if (pathExt != null && pathExt.toLowerCase() == Flags.ASTC_IMAGE_EXT)
+		if (pathExt != null && pathExt.toLowerCase() == Flags.ASTC_IMAGE_EXT)
 			ext = Flags.ASTC_IMAGE_EXT;
 		else if (Flags.ASTC_TEXTURES && ext == Flags.IMAGE_EXT && (Assets.exists('$noExt/1.${Flags.ASTC_IMAGE_EXT}') || Assets.exists('$noExt/spritemap.${Flags.ASTC_IMAGE_EXT}')))
 			ext = Flags.ASTC_IMAGE_EXT;
@@ -363,6 +345,8 @@ class Paths
 		}
 
 		if (!SkipMultiCheck && Assets.exists('$noExt/1.${ext}')) {
+			// MULTIPLE SPRITESHEETS!!
+
 			var graphic = FlxG.bitmap.add('$noExt/1.${ext}', false, '$noExt/mult');
 			if (graphic == null)
 				return null;
@@ -428,6 +412,7 @@ class Paths
 		return content;
 	}
 	static public function getFolderContent(key:String, addPath:Bool = false, source:AssetSource = BOTH, noExtension:Bool = false):Array<String> {
+		// designed to work both on windows and web
 		if (!key.endsWith("/")) key += "/";
 		var content = assetsTree.getFiles('assets/$key', source);
 		for (k => e in content) {
@@ -437,6 +422,7 @@ class Paths
 		return content;
 	}
 
+	// Used in Script.hx
 	@:noCompletion public static function getFilenameFromLibFile(path:String) {
 		var file = new haxe.io.Path(path);
 		if(file.file.startsWith("LIB_")) {
