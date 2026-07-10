@@ -22,16 +22,8 @@ class ASTCBitmapData {
 	static inline var MAGIC_2:Int = 0xA1;
 	static inline var MAGIC_3:Int = 0x5C;
 
-	// Cabeçalho mágico para o formato .opt ("OPT!")
-	static inline var OPT_MAGIC_0:Int = 0x4F; // 'O'
-	static inline var OPT_MAGIC_1:Int = 0x50; // 'P'
-	static inline var OPT_MAGIC_2:Int = 0x54; // 'T'
-	static inline var OPT_MAGIC_3:Int = 0x21; // '!'
-
 	public static inline function isASTCPath(id:String):Bool {
-		if (id == null) return false;
-		var lower = id.toLowerCase();
-		return lower.endsWith('.${Flags.ASTC_IMAGE_EXT}') || lower.endsWith('.opt');
+		return id != null && id.toLowerCase().endsWith('.${Flags.ASTC_IMAGE_EXT}');
 	}
 
 	public static function resolveASTCAssetID(id:String):String {
@@ -45,18 +37,12 @@ class ASTCBitmapData {
 			return null;
 
 		var lower = id.toLowerCase();
-		
-		// Tenta interceptar pelo arquivo .opt primeiro
 		var imageSuffix = '.${Flags.IMAGE_EXT}'.toLowerCase();
-		if (lower.endsWith(imageSuffix)) {
-			var optID = id.substr(0, id.length - imageSuffix.length) + '.opt';
-			if (LimeAssets.exists(optID)) return optID;
-			
-			var astcID = id.substr(0, id.length - imageSuffix.length) + '.${Flags.ASTC_IMAGE_EXT}';
-			return LimeAssets.exists(astcID) ? astcID : null;
-		}
+		if (!lower.endsWith(imageSuffix))
+			return null;
 
-		return null;
+		var astcID = id.substr(0, id.length - imageSuffix.length) + '.${Flags.ASTC_IMAGE_EXT}';
+		return LimeAssets.exists(astcID) ? astcID : null;
 	}
 
 	public static inline function isGPUTextureBitmap(bitmapData:BitmapData):Bool {
@@ -73,33 +59,17 @@ class ASTCBitmapData {
 	}
 
 	static function fromBytes(bytes:Bytes, assetID:String):BitmapData {
-		if (bytes == null || bytes.length <= HEADER_SIZE) {
-			trace('Invalid asset size: $assetID');
+		if (bytes == null || bytes.length <= HEADER_SIZE || !hasValidHeader(bytes)) {
+			trace('Invalid ASTC texture: $assetID');
 			return null;
 		}
 
-		// Variável para controlar onde o arquivo ASTC realmente começa
-		var startOffset:Int = 0;
-
-		// Se começar com a assinatura do .opt, pulamos o cabeçalho personalizado
-		if (bytes.get(0) == OPT_MAGIC_0 && bytes.get(1) == OPT_MAGIC_1 && bytes.get(2) == OPT_MAGIC_2 && bytes.get(3) == OPT_MAGIC_3) {
-			// Exemplo: se o seu cabeçalho .opt tem 12 bytes fixos, mudamos para 12.
-			// Se ele varia, você pode ler o tamanho dele nos próximos bytes.
-			startOffset = 12; 
-		}
-
-		// Valida se os bytes (no offset correto) contêm uma textura ASTC válida
-		if (bytes.length <= (startOffset + HEADER_SIZE) || !hasValidHeader(bytes, startOffset)) {
-			trace('Invalid ASTC texture structure in: $assetID');
-			return null;
-		}
-
-		var blockX = bytes.get(startOffset + 4);
-		var blockY = bytes.get(startOffset + 5);
-		var blockZ = bytes.get(startOffset + 6);
-		var width = readU24(bytes, startOffset + 7);
-		var height = readU24(bytes, startOffset + 10);
-		var depth = readU24(bytes, startOffset + 13);
+		var blockX = bytes.get(4);
+		var blockY = bytes.get(5);
+		var blockZ = bytes.get(6);
+		var width = readU24(bytes, 7);
+		var height = readU24(bytes, 10);
+		var depth = readU24(bytes, 13);
 		var internalFormat = getInternalFormat(blockX, blockY);
 
 		if (blockZ != 1 || depth != 1 || width <= 0 || height <= 0 || internalFormat == 0) {
@@ -133,11 +103,8 @@ class ASTCBitmapData {
 			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
 			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-			
-			// Envia os bytes compactados pulando o tamanho do cabeçalho do arquivo e o cabeçalho do ASTC
-			var dataOffset = startOffset + HEADER_SIZE;
 			gl.compressedTexImage2D(texture.__textureTarget, 0, internalFormat, width, height, 0,
-				UInt8Array.fromBytes(bytes, dataOffset, bytes.length - dataOffset));
+				UInt8Array.fromBytes(bytes, HEADER_SIZE, bytes.length - HEADER_SIZE));
 			context.__bindGLTexture2D(null);
 
 			return BitmapData.fromTexture(texture);
@@ -148,11 +115,11 @@ class ASTCBitmapData {
 		}
 	}
 
-	static inline function hasValidHeader(bytes:Bytes, offset:Int):Bool {
-		return bytes.get(offset + 0) == MAGIC_0
-			&& bytes.get(offset + 1) == MAGIC_1
-			&& bytes.get(offset + 2) == MAGIC_2
-			&& bytes.get(offset + 3) == MAGIC_3;
+	static inline function hasValidHeader(bytes:Bytes):Bool {
+		return bytes.get(0) == MAGIC_0
+			&& bytes.get(1) == MAGIC_1
+			&& bytes.get(2) == MAGIC_2
+			&& bytes.get(3) == MAGIC_3;
 	}
 
 	static inline function readU24(bytes:Bytes, offset:Int):Int {
